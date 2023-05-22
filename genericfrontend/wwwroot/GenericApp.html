@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sistema Já</title>
+    <link rel="shortcut icon" href="/ico/mylogo.ico" />
+    <!-- Bibliotecas js -->
+    <link rel="stylesheet" href="/lib/libs/bootstrap-4.3.1-dist/css/bootstrap.min.css" />
+    <script src="/lib/libs/jquery-3.4.1.min.js"></script>
+    <script src="/lib/libs/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/lib/libs/jquery-ui.min.css" />
+    <script src="/lib/libs/popper.min.js"></script>
+    <script src="/lib/libs/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="/js/CommonUtils.js"></script>
+    <script src="/js/GenericForms.js"></script>
+    <!-- jquerydatetimepciker-->
+    <link rel="stylesheet" type="text/css" href="/lib/libs/jquerydatetimepicker/jquery.datetimepicker.min.css">
+    <!-- tinymce-->
+    <script src="lib/tinymce/tinymce.min.js"></script>
+    
+
+
+
+    <!-- Fim das Bibliotecas js-->
+    <!-- css da WebApp-->
+    <link rel="stylesheet" href="/css/site.css" />
+    <script>
+        var myDataHost = 'sei lá';
+        //var theInterfaceUrl = "";
+        var myMenu = null;
+        var myModulos = null;
+
+        function mostraMenu(interfaceUrl) {
+            myMenu = new MenuButtonBar(interfaceUrl, "MyGenericMenu", "#myForm", "myMenu");
+            //console.log(interfaceUrl);
+            $("#myChooserForm").hide();
+            $("#myFormBar").hide();
+            myMenu.getButtonMenu("");
+
+            //Botões de rodapé
+            if(myModulos !== undefined){                
+                let auxDiv = document.getElementById('moduloButtons');                
+                for(let i=0; i< myModulos['modulos'].length;i++){
+                    addFooterButton(myModulos.modulos[i],auxDiv,myDataHost);                 
+                }
+            }
+            
+        }
+
+        function addFooterButton(element,targetDiv,myDataHost){
+            
+            id_modulo = element['id_modulo'];
+            urlInterface = element['urlInterface'];
+            theIcon = element['icon']; 
+            let auxElement = document.getElementById(id_modulo);
+
+            if(auxElement==null){
+                let auxDivBt = document.createElement('div');
+                auxDivBt.setAttribute('id',id_modulo);
+                let auxBt = document.createElement('button');                        
+                auxBt.setAttribute('class','btn btn-primary border');
+                let auxImg = document.createElement('img');
+                auxImg.setAttribute('src',theIcon);   
+                auxBt.appendChild(auxImg);                                                
+                let auxUrl = myDataHost + urlInterface;
+                auxBt.addEventListener('click',()=>{                         
+                    mostraMenu(auxUrl);
+                });  
+                auxDivBt.appendChild(auxBt);                    
+                auxN = targetDiv.children.length;
+                targetDiv.insertBefore(auxDivBt,targetDiv.children[auxN-1]);
+            }
+        }
+
+        function inicializa() {
+            var myCallPromise = call_GET_JSON_PURA("/myDataHost");
+            myCallPromise.then((data) => {
+                myDataHost = data['urlDataHost'];                
+                let auxPromise2 = call_GET_JSON_PURA("/myModulos");
+                auxPromise2.then((data2)=>{
+                    myModulos = data2;
+                    if(myModulos !== undefined){
+                        console.log(myModulos);
+                        if(myModulos.modulos[0]!== undefined){
+                            let interfacePath = myModulos.modulos[0]['urlInterface'];
+                            let theInterfaceUrl = myDataHost+interfacePath;
+                            console.log(theInterfaceUrl);
+                            mostraMenu(theInterfaceUrl);
+                        }                        
+                    }                    
+                });
+                
+            }).catch((err) => {
+                location.replace("/logout");
+                console.log("Não deu certo!");
+            });
+
+        }
+
+        $(document).ready(function () {
+
+            $(
+                function () {
+                    inicializa();
+                }
+            );
+
+            $("#btnCloseMyForm").click(function () {
+
+                $("#myForm").empty();
+                $("#myFormBar").hide();
+            });
+
+            $("#btnLogout").click(function () {
+                location.replace("/logout");
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <div id="MyGenericMenu"></div>
+    </header>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3 ">
+            <div class="d-lg-flex align-content-lg-center overflow-auto h-75">
+                <div class="col-sm-8 mx-auto" id="myFormArea">
+                    <div id="myFormBar">
+                        <button id="btnCloseMyForm" type="button" class="close">&times;</button>
+                    </div>
+                    <div id="myForm"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="btn-group pr-2" id="moduloButtons">
+            <!--div class="d-flex fixed-bottom"-->
+            &copy; 2023 - SJMS&nbsp;&nbsp;&nbsp;&nbsp;            
+            
+            <div><button type="button" class="btn btn-primary" id="btnLogout"><img src="/svg/exit_to_app-24px.svg" /></button></div>
+            
+        </div>
+    </footer>
+    <!-- jquerydatetimepciker-->   
+    
+    <script src="/lib/libs/jquerydatetimepicker/jquery.datetimepicker.full.min.js"></script>
+</body>
+
+</html>

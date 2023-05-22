@@ -1,0 +1,3 @@
+#Na linha de comando cmd, no diretorio do script rodar:
+
+sqlite3 plantao.db ".read script.sql"

@@ -1,0 +1,11 @@
+{
+  "myhost": "https://localhost",
+  "portLoginApp":"3000",
+  "portDataApp":"3001",
+  "portMasterApp":"9999",
+  "urlAppData": "http://localhost:3001",
+  "urlCertHost": "https://localhost:9999",
+  "urlLoginHost": "https://localhost:3000",
+  "urlMongo": "mongodb://localhost:27017/",
+  "mongoDB": "SistemaJADB"
+}

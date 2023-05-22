@@ -1,0 +1,84 @@
+{
+	"Root":{
+		"Confs":{"urlBase":"string","active":"boolean","datetime":"datetime"}, 
+		"MenuBar":{"id":"string", "descricao":"string", "maxItensPerLine":"integer", "Hierarquia":"stringtree"},
+		"webapiDialogs":{
+			"metalist":{
+				"webapiDialog":{
+				"id":"string", 
+				"nome":"string",
+				"tipo":"fixed:webdialog", 
+				"urlApi":"string", 
+				"httpMethod":"options:GET|POST|PUT|DELETE", 
+				"bindingStrategy":"options:SimpleId|directQuery|QueryParams|JsonIn|JsonTipoDadosIn",
+				"bindingParameters":{
+					"directPagination":"options:true|fase",
+					"pageSize":"integer",
+					"urlCount":"integer",
+					"nomeEntidade":"string"
+				},
+				"nomeBotao":"string",
+				"in":{
+					"camposFormObjeto":"stringlist",
+					"labelsFormObjeto":"stringslist",
+					"readOnlyFormObjeto":"stringlist:readOnly|null",
+					"inputFieldFormObjeto":"stringlist",
+					"camposObjeto":"stringlist",
+					"campoObjetoId":"string",
+					"camposFormClassObjeto":"stringlist",
+					"tipoCamposObjeto":"stringlist:boolean|text|date|objectid",
+					"chooseFormObjeto":"stringlist:values[id]",
+					"accordions":"pair:string|integerinterval",
+					"campoFormObjetoOrder":"integerlist"
+				},
+				"out":{
+					"camposFormObjeto": "stringlist",
+					"labelsFormObjeto": "stringlist",
+					"readOnlyFormObjeto": "stringlist:readOnly|null",
+					"inputFieldFormObjeto":"stringlist",
+					"camposObjeto": "stringlist",
+					"camposFormClassObjeto": "stringlist",
+					"tipoCamposObjeto": "stringlist:boolean|text|date|objectid",
+					"chooseFormObjeto": "stringlist:values[id]",
+					"accordions":"pair:string|integerinterval",
+					"camposFormObjetoOrder": "integerlist",
+					"camposListagemObjeto": "stringlist:values[this.camposObjeto]",
+					"campoObjetoId": "stringlist:values[this.camposObjeto]"
+				}
+				}
+			}
+		},
+		"entities":{
+			"metalist":{
+				"entity":{
+					"id":"string", 
+					"nome":"string", 
+					"tipo":"fixed:entity",
+					"urlObter":"string", 
+					"urlApagar":"string", 
+					"urlLoadObjetos":"string", 
+					"urlCount":"string", 
+					"urlAlterar":"string", 
+					"camposFormObjeto":"stringlist",
+					"labelsFormObjeto":"stringlist", 
+					"readOnlyFormObjeto":"stringlist:readOnly|null",
+					"inputFieldFormObjeto":"stringlist", 
+					"camposObjeto":"stringlist", 
+					"camposObjetoId":"stringlist:values[this.camposObjeto]",
+					"campoListagemObjeto":"stringlist:values[this.camposObjeto]",
+					"camposFormClassObjeto":"stringlist", 
+					"nomeEntidade":"string",
+					"tipoCamposObjeto":"stringlist:boolean|text|date|objectid",
+					"chooseFormObjeto":"stringlist:values[id]"
+				}
+			}
+		}		
+	}
+}
+
+
+
+
+
+
+

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sistema Já</title>
+    <!-- Bibliotecas js -->
+    <link rel="stylesheet" href="/lib/libs/bootstrap-4.3.1-dist/css/bootstrap.min.css" />
+    <script src="/lib/libs/jquery-3.4.1.min.js"></script>
+    <script src="/lib/libs/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/lib/libs/jquery-ui.min.css" />
+    <script src="/lib/libs/popper.min.js"></script>
+    <script src="/lib/libs/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
+    <!-- Fim das Bibliotecas js-->
+    <!-- css da WebApp-->
+    <link rel="stylesheet" href="/css/site.css" />
+    <script>
+        //Meu Menu Genérico
+        var myToken = "";
+        $(
+            function () {
+                $.ajaxSetup({
+                    scriptCharset: "utf-8",
+                    contentType: "application/json; charset=utf-8"
+                });
+
+                $.ajax({
+                    url: "/authenticate",
+                    type: "POST",
+                    contentType: "application/json",
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        var myToken = data;
+                        console.log(data);
+                        //Tenho que pegar a página GenericApp.html e chamar ...
+
+                        $.ajax({
+                            //url: "/TestApp.html",
+                            url: "/GenericApp.html",
+                            type: "GET",
+                            contentType: "text/html; charset=utf-8",
+                            headers: { 'x-access-token': myToken },
+                            dataType: "html",
+                            cache: false,
+                            success: function (dataget, statusTxt) {
+                                //myRetorno = data;
+                                //console.log(dataget);
+                                document.open("text/html", "replace");
+                                document.write(dataget);
+                                document.close();
+                            },
+                            error: function (message) {
+                                console.log("Falhou:" + message);
+                            }
+                        });
+
+                    },
+                    error: function (err) {
+                        $("#idEspera").val('Não deu certo!');
+                        location.replace("/logout");
+                        console.log("Não deu certo!");
+                    }
+                });
+            }
+        );
+
+    </script>
+
+</head>
+<body>
+
+    <header>
+    </header>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3 ">
+            <div class="d-lg-flex align-content-lg-center overflow-auto" style="height: 650px;">
+                <div class="col-sm-8 mx-auto" id="myFormArea">
+                    <h1 id="idEspera">Autenticando ...</h1>                    
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - SJMS&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

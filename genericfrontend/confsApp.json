@@ -1,0 +1,49 @@
+{
+  "nomeSistema":"Sistema de Gerenciamento de Plantões",
+  "myhost": "https://localhost",
+  "portLoginApp": "3003",
+  "portDataApp": "3001",
+  "portMasterApp": "9999",
+  "portMiddleWare": "3002",
+  "urlAppMiddleWare":"http://localhost:3002",
+  "urlAppDataOld": "http://localhost:3001",
+  "urlAppData": "http://localhost:3001",
+  "urlCertHost": "https://localhost:9999",
+  "urlLoginHost": "https://localhost:3003",
+  "urlWebApiPlantao":"https://localhost:3000",
+  "modulos":[
+    {
+      "id_modulo":"plantao_adm_regional",
+      "urlInterface":"/plantao_adm_regional/api/getInterface",
+      "icon":"/svg/slideshow-24px.svg"
+    },
+    {
+      "id_modulo":"plantao_master",
+      "urlInterface":"/plantao_master/api/getInterface",
+      "icon":"/svg/settings-24px.svg"
+    }
+  ],
+  "modulosOld":[
+    {
+      "id_modulo":"mudaParaSistema",
+      "urlInterface":"/Interface/api/getInterface",
+      "icon":"/svg/slideshow-24px.svg"
+    },
+    {
+      "id_modulo":"mudaParaConfigs",
+      "urlInterface":"/MetaCatalogo/api/getInterface",
+      "icon":"/svg/settings-24px.svg"
+    },
+    {
+      "id_modulo":"mudaParaSecurity",
+      "urlInterface":"/InterfaceSecurity/api/getInterface",
+      "icon":"/svg/vpn_key-24px.svg"
+    },
+    {
+      "id_modulo":"mudaParaUsers",
+      "urlInterface":"/MetaInterfaceSecurity/api/getInterface",
+      "icon":"/svg/supervised_user_circle-24px.svg"
+    } 
+  ]
+
+}
