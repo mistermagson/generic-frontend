@@ -6,8 +6,8 @@ set jsoneditor="%theDir%\jsoneditor"
 cd %backendnode%
 start node --inspect plantaowebapi.js
 cd %genericfrontend%
-start node --inspect plantaomiddleware.js
-start node --inspect loginSmart.js
+start node plantaomiddleware.js
+start node loginSmart.js
 rem cd %genericdata%
 rem start node app.js
 cd %jsoneditor%
