@@ -494,7 +494,7 @@ class MenuButtonBar extends GenericElement {
             auxStyle +
             hamburgerScript +
         '<div id="' + this.idName("myBars") + '">' +
-        '   <nav class="navbar navbar-expand-sm bg-light" >'+
+        '   <nav class="nav" >'+
         '       <div class="container">' +               
         '       <div class="row"  id="' + this.idName("theMenuBarRow") + this.barCount + '">' +   
         //Hamburger icon
@@ -502,9 +502,9 @@ class MenuButtonBar extends GenericElement {
         '          <img src="/svg/menu-48px.svg"/>' +
         '       </a>' +
         //Fim do Hamburger icon  
-        '           <ul class="' +auxHamburgerActive + ' navbar-nav" id="' + this.idName("theMenuBar") + this.barCount + '">' +
+        '           <ul class="' +auxHamburgerActive + ' nav" id="' + this.idName("theMenuBar") + this.barCount + '">' +
         //Home 
-        '          <li class="nav-item"><a class="nav-link" href="#" id="'+ this.myHomeId +  '">'+                    
+        '          <li><a class="nav-link" href="#" id="'+ this.myHomeId +  '">'+
         '              <img src="/svg/house-24px.svg" class=""  />'+
         '          </a></li>' +   
         '           </ul>' +      
